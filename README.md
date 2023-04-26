@@ -1,4 +1,4 @@
-# Chinese PM25 Data Display and Forecast System
+# Chinese PM2.5 Data Display and Forecast System
 
 frontend: React + Antd
 
