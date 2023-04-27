@@ -58,6 +58,26 @@ try:
     """
     cursor.execute(sql4)
 
+    sql5 = """
+        create index index_id on user(id);
+    """
+    cursor.execute(sql5)
+
+    sql6 = """
+        create index index_city_id on city(id);
+    """
+    cursor.execute(sql6)
+
+    sql7 = """
+        alter table data add index index_city_date_hour (city_id, date, hour);
+    """
+    cursor.execute(sql7)
+
+    sql8 = """
+        alter table favorite add index index_user_city (user_id, city_id);
+    """
+    cursor.execute(sql8)
+
 except Exception as e:
     print(e)
     db.rollback()
