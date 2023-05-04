@@ -1,8 +1,5 @@
-from db import User, City, Data, Favorite
+from db import db, User, City, Data, Favorite
 from flask import Blueprint, request, jsonify
-from db import db
-import json
-
 api = Blueprint('api', __name__)
 
 @api.route('/user/login', methods=['POST'])
