@@ -1,16 +1,15 @@
 const CityReducer = (prevState = {
-    cityName: "北京"
-}, action = {}) => {
-    // console.log(action)
+    cityList: []
+}, action={})=>{
     switch (action.type) {
-        case "change-city":
+        case 'GET_CITY_DATA':
             return {
                 ...prevState,
-                cityName: action.payload
+                cityList: action.payload
             }
         default:
-            return prevState;
+            return prevState
     }
-};
+}
 
 export default CityReducer;

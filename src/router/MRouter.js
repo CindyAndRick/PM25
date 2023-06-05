@@ -3,8 +3,6 @@ import { useRoutes } from 'react-router-dom'
 import LazyLoad from '../utils/LazyLoad'
 import Redirect from '../utils/Redirect'
 
-import { Layout } from 'antd'
-
 export default function MRouter() {
 
     const element = useRoutes([
@@ -27,10 +25,8 @@ export default function MRouter() {
     ])
 
     return (
-        <div>
-            <Layout className="site-layout">
-                {element}
-            </Layout>
+        <div style={{ height: '100%', width: '100%'}}>
+            {element}
         </div>
     )
 }

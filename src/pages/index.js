@@ -1,10 +1,10 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FileOutlined, PieChartOutlined, UserOutlined, DesktopOutlined, TeamOutlined } from '@ant-design/icons';
-import { Breadcrumb, Layout, Menu, theme } from 'antd';
+import { PieChartOutlined, UserOutlined, DesktopOutlined } from '@ant-design/icons';
+import { Layout, Menu, theme } from 'antd';
 import MRouter from '../router/MRouter';
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Sider } = Layout;
 
 function getItem(label, key, icon, children) {
     return {
@@ -16,8 +16,8 @@ function getItem(label, key, icon, children) {
 }
 
 const items = [
-    getItem('地图', 'map', <PieChartOutlined />),
-    getItem('数据', 'data', <DesktopOutlined />),
+    getItem('AQI地图', 'map', <PieChartOutlined />),
+    getItem('AQI数据', 'data', <DesktopOutlined />),
     getItem('用户', 'center', <UserOutlined />)
 ];
 
@@ -56,9 +56,7 @@ const Index = (props) => {
                 <Menu theme="dark" defaultSelectedKeys={['map']} mode="inline" items={items} onClick={(e) => { onMenuClick(e) }} />
             </Sider>
             <Layout className="site-layout">
-                <Content>
-                    <MRouter />
-                </Content>
+                <MRouter />
             </Layout>
         </Layout >
     );
