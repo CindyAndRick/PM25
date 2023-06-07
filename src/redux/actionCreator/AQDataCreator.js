@@ -23,4 +23,27 @@ async function getAllAQData(){
     return allAQData;
 }
 
-export default getAllAQData;
+async function getAQDataByCity(city_id){
+    var cityAQData = await API({
+        url: "data/getAQDataByCity",
+        method: "POST",
+        headers:{
+            'Content-Type': 'application/json;charset=UTF-8'
+        },
+        data:{
+            "start_date": moment().subtract(2, 'hours').subtract(3, 'days').format('YYYY-MM-DD'),
+            "end_date": moment().subtract(2, 'hours').add(7, 'days').format('YYYY-MM-DD'),
+            "city_id": city_id
+        }
+    }).then(
+        res=>{
+            return {
+                type: 'GET_CITY_DATA',
+                payload: res.data.data
+            }
+        }
+    )
+    return cityAQData;
+}
+
+export {getAllAQData, getAQDataByCity};

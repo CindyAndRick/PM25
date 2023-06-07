@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PieChartOutlined, UserOutlined, DesktopOutlined } from '@ant-design/icons';
-import { Layout, Menu, theme } from 'antd';
+import { Layout, Menu } from 'antd';
 import MRouter from '../router/MRouter';
 
 const { Sider } = Layout;
@@ -23,9 +23,9 @@ const items = [
 
 const Index = (props) => {
     // const [collapsed, setCollapsed] = useState(false);
-    const {
-        token: { colorBgContainer },
-    } = theme.useToken();
+    // const {
+    //     token: { colorBgContainer },
+    // } = theme.useToken();
 
     const navigate = useNavigate();
 
@@ -35,17 +35,18 @@ const Index = (props) => {
     };
 
     return (
-        <Layout
+        <Layout hasSider>
+        <Layout>
+            <Sider
             style={{
                 overflow: 'auto',
                 height: '100vh',
-                // position: 'fixed',
+                position: 'fixed',
                 left: 0,
                 top: 0,
                 bottom: 0,
             }}
-        >
-            <Sider>
+            >
                 <div
                     style={{
                         height: 32,
@@ -55,10 +56,11 @@ const Index = (props) => {
                 />
                 <Menu theme="dark" defaultSelectedKeys={['map']} mode="inline" items={items} onClick={(e) => { onMenuClick(e) }} />
             </Sider>
-            <Layout className="site-layout">
+            <Layout className="site-layout" style={{marginLeft: "200px", height:"100vh"}}>
                 <MRouter />
             </Layout>
         </Layout >
+        </Layout>
     );
 };
 export default Index;

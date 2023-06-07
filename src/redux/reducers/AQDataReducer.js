@@ -1,4 +1,4 @@
-const MapReducer = (prevState = {
+const AQDataReducer = (prevState = {
     allAQData: []
 }, action = {}) =>{
     switch (action.type) {
@@ -7,9 +7,14 @@ const MapReducer = (prevState = {
                 ...prevState,
                 allAQData: action.payload
             }
+        case 'GET_CITY_DATA':
+            return {
+                ...prevState,
+                cityAQData: action.payload
+            }
         default:
             return prevState
     }
 }
 
-export default MapReducer;
+export default AQDataReducer;

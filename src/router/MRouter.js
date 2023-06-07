@@ -19,13 +19,25 @@ export default function MRouter() {
             element: LazyLoad("Data/Data")
         },
         {
+            path: "/detail/:city_id",
+            element: LazyLoad("Detail/Detail")
+        },
+        {
             path: "/center",
-            element: LazyLoad("Center/Center")
+            element: LazyLoad("Center/Center"),
+        },
+        {
+            path: "/login",
+            element: LazyLoad("Login/Login")
+        },
+        {
+            path: "/register",
+            element: LazyLoad("Register/Register")
         }
     ])
 
     return (
-        <div style={{ height: '100%', width: '100%'}}>
+        <div style={{ height: '100%', width: '100%' }}>
             {element}
         </div>
     )

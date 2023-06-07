@@ -7,7 +7,7 @@ async function getCityData(){
     }).then(
         res=>{
             return {
-                type: 'GET_CITY_DATA',
+                type: 'GET_CITY_LIST',
                 payload: res.data.data
             }
         }

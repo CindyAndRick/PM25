@@ -1,8 +1,8 @@
-const CityReducer = (prevState = {
+const CityDataReducer = (prevState = {
     cityList: []
 }, action={})=>{
     switch (action.type) {
-        case 'GET_CITY_DATA':
+        case 'GET_CITY_LIST':
             return {
                 ...prevState,
                 cityList: action.payload
@@ -12,4 +12,4 @@ const CityReducer = (prevState = {
     }
 }
 
-export default CityReducer;
+export default CityDataReducer;
