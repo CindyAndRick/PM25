@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useMemo } from 'react'
 import { connect } from 'react-redux';
 import { getAQDataByCity } from '../../redux/actionCreator/AQDataCreator';
-import getCityData from '../../redux/actionCreator/CityDataCreator';
+import { getCityData } from '../../redux/actionCreator/CityDataCreator';
 import { useParams } from 'react-router-dom';
 
 import { Layout, theme, Table } from 'antd';
@@ -23,8 +23,8 @@ function Detail(props) {
         if (cityList.length === 0) {
             getCityData();
         }
-        return ()=>{
-            
+        return () => {
+
         }
     }, [getAQDataByCity, cityList, getCityData, city_id]);
 
@@ -42,7 +42,7 @@ function Detail(props) {
         console.log(cityList);
     }, [cityList, city_id])
 
-    const dataSource = useMemo(()=>{
+    const dataSource = useMemo(() => {
         if (Array.isArray(cityAQData)) {
             return cityAQData.map((item, index) => {
                 return {
@@ -61,32 +61,60 @@ function Detail(props) {
         } else {
             return [];
         }
-    },[cityAQData])
+    }, [cityAQData])
 
     const columns = [
-        {title: '日期', dataIndex: 'date', key: 'date'},
-        {title: '时间', dataIndex: 'hour', key: 'hour'},
-        {title: 'AQI', dataIndex: 'aqi', key: 'aqi', render: (text) => {var obj; text < 100 ? obj = {color: 'green'} : 
-                                                                        text < 200 ? obj = {color: 'orange'} : obj = {color: 'red'};
-                                                                        return (<p style={obj}>{text}</p>)}, sorter: (a, b) => a.aqi - b.aqi},
-        {title: 'PM2.5', dataIndex: 'pm25', key: 'pm25', render: (text) => {var obj; text < 75 ? obj = {color: 'green'} : 
-                                                                            text < 150 ? obj = {color: 'orange'} : obj = {color: 'red'};
-                                                                            return (<p style={obj}>{text}</p>)}, sorter: (a, b) => a.pm25 - b.pm25},
-        {title: 'PM10', dataIndex: 'pm10', key: 'pm10' , render: (text) => {var obj; text < 40 ? obj = {color: 'green'} : 
-                                                                            text < 70 ? obj = {color: 'orange'} : obj = {color: 'red'};
-                                                                            return (<p style={obj}>{text}</p>)}, sorter: (a, b) => a.pm10 - b.pm10},
-        {title: 'CO', dataIndex: 'co', key: 'co', render: (text) => {var obj; text < 4 ? obj = {color: 'green'} : 
-                                                                    text < 10 ? obj = {color: 'orange'} : obj = {color: 'red'};
-                                                                    return (<p style={obj}>{text}</p>)}, sorter: (a, b) => a.co - b.co},
-        {title: 'NO2', dataIndex: 'no2', key: 'no2', render: (text) => {var obj; text < 40 ? obj = {color: 'green'} : 
-                                                                        text < 80 ? obj = {color: 'orange'} : obj = {color: 'red'};
-                                                                        return (<p style={obj}>{text}</p>)}, sorter: (a, b) => a.no2 - b.no2}, 
-        {title: 'O3', dataIndex: 'o3', key: 'o3', render: (text) => {var obj; text < 160 ? obj = {color: 'green'} : 
-                                                                    text < 200 ? obj = {color: 'orange'} : obj = {color: 'red'};
-                                                                    return (<p style={obj}>{text}</p>)}, sorter: (a, b) => a.o3 - b.o3},
-        {title: 'SO2', dataIndex: 'so2', key: 'so2', render: (text) => {var obj; text < 20 ? obj = {color: 'green'} : 
-                                                                    text < 60 ? obj = {color: 'orange'} : obj = {color: 'red'};
-                                                                    return (<p style={obj}>{text}</p>)}, sorter: (a, b) => a.so2 - b.so2}
+        { title: '日期', dataIndex: 'date', key: 'date' },
+        { title: '时间', dataIndex: 'hour', key: 'hour' },
+        {
+            title: 'AQI', dataIndex: 'aqi', key: 'aqi', render: (text) => {
+                var obj; text < 100 ? obj = { color: 'green' } :
+                    text < 200 ? obj = { color: 'orange' } : obj = { color: 'red' };
+                return (<p style={obj}>{text}</p>)
+            }, sorter: (a, b) => a.aqi - b.aqi
+        },
+        {
+            title: 'PM2.5', dataIndex: 'pm25', key: 'pm25', render: (text) => {
+                var obj; text < 75 ? obj = { color: 'green' } :
+                    text < 150 ? obj = { color: 'orange' } : obj = { color: 'red' };
+                return (<p style={obj}>{text}</p>)
+            }, sorter: (a, b) => a.pm25 - b.pm25
+        },
+        {
+            title: 'PM10', dataIndex: 'pm10', key: 'pm10', render: (text) => {
+                var obj; text < 40 ? obj = { color: 'green' } :
+                    text < 70 ? obj = { color: 'orange' } : obj = { color: 'red' };
+                return (<p style={obj}>{text}</p>)
+            }, sorter: (a, b) => a.pm10 - b.pm10
+        },
+        {
+            title: 'CO', dataIndex: 'co', key: 'co', render: (text) => {
+                var obj; text < 4 ? obj = { color: 'green' } :
+                    text < 10 ? obj = { color: 'orange' } : obj = { color: 'red' };
+                return (<p style={obj}>{text}</p>)
+            }, sorter: (a, b) => a.co - b.co
+        },
+        {
+            title: 'NO2', dataIndex: 'no2', key: 'no2', render: (text) => {
+                var obj; text < 40 ? obj = { color: 'green' } :
+                    text < 80 ? obj = { color: 'orange' } : obj = { color: 'red' };
+                return (<p style={obj}>{text}</p>)
+            }, sorter: (a, b) => a.no2 - b.no2
+        },
+        {
+            title: 'O3', dataIndex: 'o3', key: 'o3', render: (text) => {
+                var obj; text < 160 ? obj = { color: 'green' } :
+                    text < 200 ? obj = { color: 'orange' } : obj = { color: 'red' };
+                return (<p style={obj}>{text}</p>)
+            }, sorter: (a, b) => a.o3 - b.o3
+        },
+        {
+            title: 'SO2', dataIndex: 'so2', key: 'so2', render: (text) => {
+                var obj; text < 20 ? obj = { color: 'green' } :
+                    text < 60 ? obj = { color: 'orange' } : obj = { color: 'red' };
+                return (<p style={obj}>{text}</p>)
+            }, sorter: (a, b) => a.so2 - b.so2
+        }
     ]
 
     return (
@@ -111,7 +139,7 @@ function Detail(props) {
                         background: colorBgContainer,
                     }}
                 >
-                    <Table dataSource={dataSource} columns={columns} pagination={{pageSize: 24}}/>
+                    <Table dataSource={dataSource} columns={columns} pagination={{ pageSize: 24 }} />
                 </div>
             </Content>
             <Footer
@@ -125,7 +153,7 @@ function Detail(props) {
     )
 }
 
-const mapStateToProps = (state) =>{
+const mapStateToProps = (state) => {
     return {
         cityAQData: state.AQDataReducer.cityAQData,
         cityList: state.CityDataReducer.cityList

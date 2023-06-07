@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { setIsLogin, setToken, setUserInfo } from '../../redux/actionCreator/UserDataCreator';
+import { initializeFavourCity } from '../../redux/actionCreator/CityDataCreator';
+import Cookies from 'js-cookie';
 import { Descriptions, Button, message } from 'antd';
 
 function ShowInfo(props) {
@@ -9,7 +12,7 @@ function ShowInfo(props) {
 
     const [messageApi, contextHolder] = message.useMessage();
 
-    let { userInfo, changeView } = props;
+    let { userInfo, setIsLogin, setToken, setUserInfo, initializeFavourCity, changeView } = props;
 
     useEffect(() => {
         if (Object.keys(userInfo).length === 0) {
@@ -23,6 +26,21 @@ function ShowInfo(props) {
         }
     }, []);
 
+    const exitLogin = () => {
+        Cookies.remove('token');
+        setIsLogin(false);
+        setToken('');
+        setUserInfo({});
+        initializeFavourCity();
+        messageApi.open({
+            type: 'success',
+            content: '退出登录成功！'
+        })
+        setTimeout(() => {
+            navigate(`/login`);
+        }, 1000);
+    }
+
     return (
         <div>
             {contextHolder}
@@ -33,6 +51,7 @@ function ShowInfo(props) {
             </Descriptions>
             <Button type="primary" onClick={() => { changeView(1) }}>修改账户信息</Button>
             <Button type="primary" onClick={() => { changeView(2) }} style={{ marginLeft: '20px' }}>修改密码</Button>
+            <Button type="primary" onClick={exitLogin} style={{ marginLeft: '20px' }}>退出登录</Button>
         </div>
     )
 }
@@ -44,7 +63,10 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-
+    setIsLogin,
+    setToken,
+    setUserInfo,
+    initializeFavourCity
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShowInfo)

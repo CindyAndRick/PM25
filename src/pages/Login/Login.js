@@ -1,6 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { setToken, setIsLogin, setUserInfo } from '../../redux/actionCreator/UserDataCreator';
+import { getFavourCity } from '../../redux/actionCreator/CityDataCreator';
 import { connect } from 'react-redux';
 import Cookies from 'js-cookie';
 import { API } from '../../utils/api.js';
@@ -13,7 +14,7 @@ function Login(props) {
         token: { colorBgContainer },
     } = theme.useToken();
 
-    let { isLogin, token, setIsLogin, setToken, setUserInfo } = props;
+    let { setIsLogin, setToken, setUserInfo, getFavourCity } = props;
 
     const navigate = useNavigate();
     const [messageApi, contextHolder] = message.useMessage();
@@ -42,6 +43,7 @@ function Login(props) {
                     setUserInfo(res.data.data);
                     Cookies.set('token', res.data.token);
                     Cookies.set('userInfo', res.data.data);
+                    getFavourCity(res.data.token);
                     navigate(`/center`);
                 }
                 else {
@@ -171,7 +173,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
     setToken,
     setIsLogin,
-    setUserInfo
+    setUserInfo,
+    getFavourCity
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)
