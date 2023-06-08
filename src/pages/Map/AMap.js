@@ -35,7 +35,7 @@ function AMap(props) {
     // 用于记录收藏点数据是否展示
     const [showFavourCity, setShowFavourCity] = useState(true);
 
-    let { allAQData, cityList, favourCityList, getAllAQData, getCityData, getFavourCity } = props;
+    let { isLogin, allAQData, cityList, favourCityList, getAllAQData, getCityData, getFavourCity } = props;
 
     // 获取空气质量与城市数据
     useEffect(() => {
@@ -191,7 +191,7 @@ function AMap(props) {
                 </Card>
             }
             {
-                favourCityList !== false && favourCityList.length !== 0 && showFavourCity &&
+                isLogin && favourCityList !== false && favourCityList.length !== 0 && showFavourCity &&
                 <Card title="收藏城市"
                     style={{
                         width: '20vw',
@@ -207,7 +207,7 @@ function AMap(props) {
                 </Card>
             }
             {
-                favourCityList !== false && favourCityList.length !== 0 && !showFavourCity &&
+                isLogin && favourCityList !== false && favourCityList.length !== 0 && !showFavourCity &&
                 <Button type="primary"
                     ghost
                     size='large'
@@ -227,7 +227,8 @@ const mapStateToProps = (state) => {
     return {
         allAQData: state.AQDataReducer.allAQData,
         cityList: state.CityDataReducer.cityList,
-        favourCityList: state.CityDataReducer.favourCityList
+        favourCityList: state.CityDataReducer.favourCityList,
+        isLogin: state.UserDataReducer.isLogin
     }
 }
 

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { Outlet } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { verifyToken, setIsLogin, setToken } from '../../redux/actionCreator/UserDataCreator';
 import { useNavigate } from 'react-router-dom';
@@ -8,7 +7,7 @@ import ShowInfo from './ShowInfo';
 import ChangeInfo from './ChangeInfo';
 import ChangePwd from './ChangePwd';
 
-import { Layout, theme, Input, Form, Button, message } from 'antd';
+import { Layout, theme } from 'antd';
 const { Header, Content, Footer } = Layout;
 
 function Center(props) {
@@ -19,7 +18,7 @@ function Center(props) {
 
     const navigate = useNavigate();
 
-    let { userInfo, isLogin, token, verifyToken, setIsLogin, setToken } = props;
+    let { verifyToken, setToken } = props;
 
     const [currentView, setCurrentView] = useState(0);
 
@@ -34,7 +33,7 @@ function Center(props) {
         }
         return () => {
         }
-    }, []);
+    }, [setToken, verifyToken, navigate]);
 
     const switchView = () => {
         switch (currentView) {

@@ -24,7 +24,7 @@ function ShowInfo(props) {
                 navigate(`/login`);
             }, 1000);
         }
-    }, []);
+    }, [messageApi, navigate, userInfo]);
 
     const exitLogin = () => {
         Cookies.remove('token');
