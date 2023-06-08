@@ -44,7 +44,7 @@ function Detail(props) {
         return () => {
 
         }
-    }, [getAQDataByCity, cityList, getCityData, city_id]);
+    }, [getAQDataByCity, cityList, getCityData, city_id, cityAQData]);
 
     useEffect(() => {
         if (!cityList || !cityList.length) {

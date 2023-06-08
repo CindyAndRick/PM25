@@ -65,7 +65,10 @@ function Data(props) {
         if (Array.isArray(allAQData)) {
             setDataSource(allAQData.map((item, index) => {
                 const city = cityList.find(city => city.id === item.city_id)
-                const favour = favourCityList.find(favour => favour.city_id === item.city_id)
+                var favour = false;
+                if (favourCityList !== false) {
+                    favour = favourCityList.find(favour => favour.city_id === item.city_id)
+                }
                 return {
                     key: index + 1,
                     favour: favour ? 't' + city.id.toString() : 'f' + city.id.toString(),
