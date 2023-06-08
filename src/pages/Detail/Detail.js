@@ -342,6 +342,10 @@ function Detail(props) {
                 }
             ]
         })
+
+        return () => {
+            my3DChart.dispose();
+        }
     }, [chart3DAQIData, chartDaysReverse]);
 
     // 计算雷达图数据
@@ -455,6 +459,10 @@ function Detail(props) {
                     return series;
                 })()
             })
+        }
+
+        return ()=>{
+            myRadarChart.dispose();
         }
     }, [radarAQData, radarMaxData]);
 
