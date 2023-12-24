@@ -1,6 +1,6 @@
 import pymysql
 
-db = pymysql.connect(host='139.224.130.38', port=30711, user='Rick', password='cindy030711', database='pm25')
+db = pymysql.connect(host='xxx.xxx.xxx.xxx', port=xxx, user='xxx', password='xxx', database='xxx')
 cursor = db.cursor()
 
 try:

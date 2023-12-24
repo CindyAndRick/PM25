@@ -11,7 +11,7 @@ import pymysql
 
 # 读取数据 
 if (0):
-    db = pymysql.connect(host='139.224.130.38', port=30711, user='Rick', password='cindy030711', database='pm25')
+    db = pymysql.connect(host='xxx.xxx.xxx.xxx', port=xxx, user='xxx', password='xxx', database='xxx')
     cursor = db.cursor()
     sql1 = 'select * from data join city on data.citY_id=city.id'
     cursor.execute(sql1)

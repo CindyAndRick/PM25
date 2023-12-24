@@ -10,7 +10,7 @@ import pymysql
 
 look_back = 8  # 步长
 
-db = pymysql.connect(host='139.224.130.38', port=30711, user='Rick', password='cindy030711', database='pm25')
+db = pymysql.connect(host='xxx.xxx.xxx.xxx', port=xxx, user='xxx', password='xxx', database='xxx')
 cursor = db.cursor()
 
 # 获取所有城市

@@ -11,7 +11,7 @@ app = Flask(__name__)
 CORS(app, supports_credentials=True)
 app.config['SECRET_KEY'] = 'random key'
 jwt = JWTManager(app)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://Rick:cindy030711@139.224.130.38:30711/pm25'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://xxx:xxx@xxx.xxx.xxx.xxx:3077/xxx'
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 db.init_app(app)
 app.config['JSON_AS_ASCII'] = False
